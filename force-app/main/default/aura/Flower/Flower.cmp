@@ -1,0 +1,27 @@
+<aura:component controller="FlowController" implements="force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="flowname" type="String" access="global" default="FilterAccounts" />
+    <aura:attribute name="sobj" type="String" access="global" default="Account" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="flows" type="Object[]" />
+    
+    <div>
+    	<div class="slds-card">
+	    	<div class="slds-p-around_medium">
+                <lightning:select aura:id="flow" name="select" label="Select a Flow" required="true" onchange="{! c.runFlow }">
+                    <aura:iteration items="{!v.flows}" var="flow">
+                        <option text="{!flow.label}" value="{!flow.id}" selected="{!flow.selected}"/>
+                    </aura:iteration>
+                </lightning:select>
+        	</div>
+        </div>
+    	<div class="slds-card">
+	    	<div class="slds-p-around_medium">
+		        <lightning:datatable keyField="id" data="{! v.data }" columns="{! v.columns }" hideCheckboxColumn="true"/>
+        	</div>
+        </div>
+    </div>
+
+</aura:component>

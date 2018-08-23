@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Flows__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Flows</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FilterAccounts</fullName>
+                <default>true</default>
+                <label>FilterAccounts</label>
+            </value>
+            <value>
+                <fullName>FilterContacts</fullName>
+                <default>false</default>
+                <label>FilterContacts</label>
+            </value>
+            <value>
+                <fullName>FilterLeads</fullName>
+                <default>false</default>
+                <label>FilterLeads</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

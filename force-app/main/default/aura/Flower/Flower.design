@@ -1,0 +1,3 @@
+<design:component >
+    <design:attribute name="flowname" label="Flow" datasource="apex://FlowsPicklist" description="Flow to run when buttonn is pressed." default="FilterAccounts" />
+</design:component>
