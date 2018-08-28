@@ -1,4 +1,4 @@
-global class FlowsPicklist extends VisualEditor.DynamicPickList{
+global class StagePicklist extends VisualEditor.DynamicPickList{
     
     private VisualEditor.DataRow defaultValue;
     private VisualEditor.DynamicPickListRows myValues;
@@ -8,7 +8,7 @@ global class FlowsPicklist extends VisualEditor.DynamicPickList{
     }
 
     global override VisualEditor.DynamicPickListRows getValues() {
-        Schema.DescribeFieldResult p = PickTest__mdt.Flows__c.getDescribe();
+        Schema.DescribeFieldResult p = Opportunity.StageName.getDescribe(); // PickTest__mdt.Flows__c.getDescribe();
         VisualEditor.DynamicPickListRows  myValues = new VisualEditor.DynamicPickListRows();
         myValues = new VisualEditor.DynamicPickListRows();
         for (PicklistEntry plentry : p.getPicklistValues()) {

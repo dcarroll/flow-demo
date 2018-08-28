@@ -32,7 +32,7 @@
                 <leftValueReference>SomeRecord.Name</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
-                    <stringValue>a</stringValue>
+                    <stringValue>Rose</stringValue>
                 </rightValue>
             </conditions>
             <connector>

@@ -1,4 +1,4 @@
-<aura:component controller="FlowController" implements="force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+<aura:component controller="FlowController" implements="force:hasSObjectName,force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="flowname" type="String" access="global" default="FilterAccounts" />
@@ -6,6 +6,7 @@
     <aura:attribute name="data" type="Object" />
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="flows" type="Object[]" />
+    <aura:attribute name="sObjectName" type="String" />
     
     <div>
     	<div class="slds-card">

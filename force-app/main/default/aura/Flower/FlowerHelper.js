@@ -2,7 +2,8 @@
     fetchData : function(component) {
         var action = component.get("c.funFlow");
         action.setParams({
-            flowname: component.get("v.flowname")
+            flowname: component.get("v.flowname"),
+            objectname: component.get('v.sObjectName')
         });
         action.setCallback(this, function(response) {
             var state = response.getState();

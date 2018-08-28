@@ -32,14 +32,14 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
-            <componentName>home:assistant</componentName>
-        </componentInstances>
-        <componentInstances>
             <componentInstanceProperties>
                 <name>flowname</name>
-                <value>FilterLeads</value>
+                <value>FilterContacts</value>
             </componentInstanceProperties>
             <componentName>Flower</componentName>
+        </componentInstances>
+        <componentInstances>
+            <componentName>home:assistant</componentName>
         </componentInstances>
         <mode>Replace</mode>
         <name>sidebar</name>

@@ -49,7 +49,124 @@ public with sharing class FlowController {
         System.debug(output);
         return JSON.serializePretty(returnVal);
     }
-    
+     
+    public static void test() {
+        
+    }
+
+    @AuraEnabled
+    public static String TAFlow(string flowname) {
+        
+        Flow.Interview flow = Flow.Interview.createInterview(
+                flowname,
+                new Map<String, List<SOBject>>());           
+            
+        flow.start();
+        String output = '\nObjects returned: \n';
+        List<Sobject> groupMembers = (List<SObject>)flow.getVariableValue('TAGroupMembers');
+        List<Sobject> groups = (List<SObject>)flow.getVariableValue('TAGroups');
+        List<Sobject> userList = (List<SObject>)flow.getVariableValue('TAUserList');
+        List<String> emailList = (List<String>)flow.getVariableValue('EmailList');
+        output += 'TAGroups: ' + groups + '\n';
+        output += 'TAGroupMembers: ' + groupMembers + '\n';
+        output += 'TAUserList: ' + userList + '\n';
+        output += 'EmailList: ' + emailList + '\n';
+        System.debug(output);
+        return JSON.serialize(disassembleSObject(userList));
+    }
+
+    private static string disassembleSObject(List<SObject> objects) {
+        Schema.SObjectType objType = objects.getSObjectType();
+        Map<String, Schema.SObjectField> fields = objType.getDescribe().fields.getMap();
+
+        String output = '';
+        if (objects.size() > 0) {
+            output = JSON.serializePretty(new DynamicResults(objects, getColumns(objects[0], fields)));
+        }
+        return output;
+    }
+
+    private static List<Column> getColumns(SObject obj, Map<String, Schema.SObjectField> fields) {
+        Map<String, Object> fieldMap = obj.getPopulatedFieldsAsMap();
+        String output = '';
+        List<Column> cols = new List<Column>();
+        for (String fieldName : fieldMap.keySet()) {
+            Object f = fieldMap.get(fieldName);
+            cols.add(new Column(fieldname, fields.get(fieldName).getDescribe().getLabel(), lookupTypeAssociation(fields.get(fieldName).getDescribe().getType()) + ''));
+            
+            output += 'Fieldname: ' + fieldName + ', Fieldvalue: ' + f + ', Fieldtype: ' + fields.get(fieldName).getDescribe().getType() + '\n';
+        }
+        System.debug('\n\n' + output + '\n');
+        return cols;
+    }
+
+    private class DynamicResults {
+        List<SObject> records = new List<SObject>();
+        List<Column> columns = new List<Column>();
+
+        private DynamicResults(List<SObject> recs, List<Column> cols) {
+            records = recs;
+            columns = cols;
+        }
+    }
+
+    private class Column {
+        String fieldName;
+        String label;
+        String type;
+
+        private Column(String fldName, String lbl, String fldType) {
+            fieldName = fldName;
+            label = lbl;
+            type = fldType;
+        }
+    }
+
+    private static string lookupTypeAssociation(Schema.DisplayType t) {
+        switch on t {
+           when EMAIL {
+               return 'email';
+           }
+           when STRING, TEXTAREA {
+               return 'text';
+           }
+           when DOUBLE {
+               return 'number';
+           }
+           when PHONE {
+               return 'phone';
+           }
+           when DATE, DATETIME {
+               return 'date';
+           }
+           when URL {
+               return 'url';
+           }
+           when LOCATION {
+               return 'location';
+           }
+           when else {
+               return 'text';
+           }
+        }
+    }
+
+    /*private private enum MyEnum {
+        ID,
+         BOOLEAN,
+        REFERENCE,
+         STRING,
+        PICKLIST,
+        TEXTAREA,
+         DOUBLE,
+        ADDRESS,
+         PHONE,
+         EMAIL,
+         DATE,
+         DATETIME,
+         URL,
+         LOCATION
+    }*/
     private class OptionValue {
         private string label;
         private string id;

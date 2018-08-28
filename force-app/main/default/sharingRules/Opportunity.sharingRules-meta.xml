@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>TA</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>TA</label>
+        <sharedTo>
+            <group>Team_America</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Proposal/Price Quote</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>
