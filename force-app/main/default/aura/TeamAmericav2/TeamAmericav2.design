@@ -1,0 +1,5 @@
+<design:component >
+    <design:attribute name="flowname" label="Flow" datasource="apex://FlowsPicklist" description="Flow to run." default="FilterAccounts" />
+    <design:attribute name="triggerstage" label="Stage to Trigger" datasource="apex://StagePicklist" description="Team America will be alerted when this stage is achieved." default="Proposal/Price Quote" />
+    <design:attribute name="fieldList" label="List of fields for output" default="Email,Name,OutOfOfficeMessage" />
+</design:component>

@@ -25,6 +25,11 @@
                 <default>false</default>
                 <label>FilterLeads</label>
             </value>
+            <value>
+                <fullName>Team_America_Email</fullName>
+                <default>false</default>
+                <label>Team America Email</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
